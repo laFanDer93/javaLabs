@@ -14,7 +14,6 @@ public enum States {
     }
 
     public String getStatesName() {
-        System.out.println(statesName);
         return statesName;
     }
 

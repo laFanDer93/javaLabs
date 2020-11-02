@@ -10,11 +10,10 @@ public class Automata {
 
     private int cash;
     private States states = States.OFF;
-    private File file = new File("drinks");
-    private List<String> drinks = new ArrayList<>();
-    private List<String> menu = new ArrayList<>();
-    private List<Integer> prices = new ArrayList<>();
-    private StringBuilder fullMenu = new StringBuilder();
+    private final File file = new File("drinks");
+    private final List<String> menu = new ArrayList<>();
+    private final List<Integer> prices = new ArrayList<>();
+    private final StringBuilder fullMenu = new StringBuilder();
     private int myChoice;
 
     {
@@ -25,12 +24,8 @@ public class Automata {
             e.printStackTrace();
         }
         while (scanner.hasNextLine()) {
-            drinks.add(scanner.nextLine());
-        }
-        for (String s : drinks) {
+            String s = scanner.nextLine();
             menu.add(s.substring(0, s.indexOf(":")));
-        }
-        for (String s : drinks) {
             prices.add(Integer.parseInt(s.substring(s.indexOf(':') + 1)));
         }
         for (int i = 0; i < menu.size(); i++) {
@@ -74,12 +69,12 @@ public class Automata {
     }
 
     public States getState() {
-        return this.states;
+        return states;
     }
 
     public void choice(int numOfMenu) {
         if (states == States.ACCEPT) {
-            this.myChoice = numOfMenu-1;
+            myChoice = numOfMenu - 1;
             states = States.CHECK;
             check();
         }
@@ -89,7 +84,7 @@ public class Automata {
         if (states == States.CHECK) {
             if (cash < prices.get(myChoice)) {
                 System.out.println("Недостаточно средств!");
-//                cancel();
+                cancel();
             } else if (cash >= prices.get(myChoice)) {
                 cook();
             }
