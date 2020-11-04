@@ -10,7 +10,7 @@ public class Student {
     Group group;// - ссылка на группу (объект Group)
     List<Integer> marks;// - контейнер оценок (ArrayList).
 
-    Student(int id, String fio){
+    Student(int id, String fio) {
         this.id = id;
         this.fio = fio;
         this.marks = new ArrayList<>();
@@ -36,29 +36,35 @@ public class Student {
         return group;
     }
 
-    public List<Integer> getMarks() {
-        return marks;
+    public void setGroup(Group group) {
+        if (this.getGroup() == null && group.getStudent(this.id)==null) {
+            this.group = group;
+             group.addStudent(this);
+        } else {
+            this.group = group;
+        }
     }
 
-    public void setMarks(List<Integer> marks) {
-        this.marks = marks;
-    }
 
-    public void setGroup(Group group){
-        this.group = group;
-    }
-
-    public void addMarks(int mark){
+    public void addMarks(int mark) {
         marks.add(mark);
     }
 
-    public double averageMark(){
+    public double averageMark() {
         double markSum = 0;
-        for(int i: marks){
-            markSum+=i;
+        for (int i : marks) {
+            markSum += i;
         }
-        return  (double) markSum/marks.size();
+        return (double) markSum / marks.size();
     }
 
-
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", fio='" + fio + '\'' +
+//                ", group=" + group.getTitle() +
+                ", marks=" + marks +
+                '}';
+    }
 }

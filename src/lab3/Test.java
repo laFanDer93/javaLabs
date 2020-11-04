@@ -3,24 +3,23 @@ package lab3;
 public class Test {
     public static void main(String[] args) {
 
-        Student st1=new Student(3,"Волков Алексей Петрович");
-        Student st2=new Student(5,"Сидорова Мария Анатольевна");
+        Deanery deanery = new Deanery(); //Создали список студентов и групп
+        System.out.println("=================================================");
+        deanery.addRandomMark();          //Добавили рандомные оценки от 2 до 5
+        System.out.println("=================================================");
+        deanery.studentsSetGroupRandomly(); //Рандомно распределили в группs
+        System.out.println("=================================================");
+        deanery.avrgGrAndStMark(); //Вывод средних оценок по студентам и группам отдельно
+        System.out.println("=================================================");
+        System.out.println(deanery.getStudents().toString());
+        deanery.transferStudent(deanery.getStudents().get(0),
+                deanery.getStudents().get(0).getGroup(),
+                deanery.getGroups().get(1));   //Перевод студента из текущей группы во 2ую.
+        deanery.dismissalForBadMarks(3.6); //Отчислить всех, у кого средняя оценка меньше указанной
 
-        Group group1 = new Group("Группа 1");
 
-        Student st3 = new Student(2,"Королёв Алексей Сергеевич");
-        Student st4 = new Student(1,"Громов Алексей Михайлович");
-        Student st5 = new Student(4,"Гвоздева Алина Витальевна");
 
-        Group group2 = new Group("Группа 1");
-
-        st1.setGroup(group1);
-        System.out.println(st1.getGroup());
-        group1.addStudent(st2);
-        for(Student s: group1.student){
-            System.out.println(s.getFio());
-        }
-
+        System.out.println(deanery.getStudents().toString());
 
     }
 }

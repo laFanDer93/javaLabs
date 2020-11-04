@@ -5,16 +5,39 @@ import java.util.List;
 
 public class Group {
 
-    String title;// - название группы
-    List<Student> student = new ArrayList<>();//- массив из ссылок на студентов
-    Student head;//- ссылка на старосту (из членов группы)
+    private String title;// - название группы
+    private Student head;//- ссылка на старосту (из членов группы)
+    private List<Student> student = new ArrayList<>();//- массив из ссылок на студентов
+
+
+    public void addStudent(Student student) {
+        this.student.add(student);
+        student.setGroup(this);
+    }
+
+
+    public List<Student> getStudent() {
+        return student;
+    }
 
     Group(String title) {
         this.title = title;
     }
 
-    public void addStudent(Student student) {
-        this.student.add(student);
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
+    }
+
+    public Student getHead() {
+        return head;
     }
 
     public void setHead(Student student) {
@@ -47,8 +70,17 @@ public class Group {
         return res / student.size();
     }
 
-    public List<Student> removeStudent(Student student) {
+    public void removeStudent(Student student) {
         this.student.remove(this.student.indexOf(student));
-        return this.student;
+        student.setGroup(null);
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "title='" + title + '\'' +
+                ", head=" + head.getFio() +
+
+                '}';
     }
 }
