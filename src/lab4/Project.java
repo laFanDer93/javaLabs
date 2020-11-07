@@ -1,5 +1,5 @@
 package lab4;
 
 public interface Project {
-    double project(int budget,double part);
+    int paymentForProject(int budget,double part);
 }

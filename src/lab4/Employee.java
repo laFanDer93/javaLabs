@@ -1,23 +1,12 @@
 package lab4;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+//Класс-родитель всех сотрудников.
 
-import java.util.List;
-
-public abstract class Employee {
-    protected int id;
-    protected String name;
-    protected int workTime;
-    protected int payment;
-    protected int base;
-    protected String project;
-    protected int budget;
-    protected double part;
-
-    @SerializedName("SkyScannner")
-    @Expose
-    private List<Employee> employeeList = null;
+public class Employee {
+    protected int id; //ИД сотрудника
+    protected String name; //ФИО сотрудника
+    protected int workTime; //отработанное время
+    protected int payment; //зарплата сотрудника
 
     public Employee(int id, String name, int workTime) {
         this.id = id;
@@ -31,14 +20,6 @@ public abstract class Employee {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
     }
 
     public String getName() {

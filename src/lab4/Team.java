@@ -1,8 +1,9 @@
 package lab4;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SkyScannner {
+public class Team {
 
     @SerializedName("id")
     @Expose
@@ -16,12 +17,12 @@ public class SkyScannner {
     @SerializedName("base")
     @Expose
     private Integer base;
+    @SerializedName("workTime")
+    @Expose
+    private Integer workTime;
     @SerializedName("project")
     @Expose
     private String project;
-    @SerializedName("budget")
-    @Expose
-    private Integer budget;
     @SerializedName("part")
     @Expose
     private Double part;
@@ -58,20 +59,20 @@ public class SkyScannner {
         this.base = base;
     }
 
+    public Integer getWorkTime() {
+        return workTime;
+    }
+
+    public void setWorkTime(Integer workTime) {
+        this.workTime = workTime;
+    }
+
     public String getProject() {
         return project;
     }
 
     public void setProject(String project) {
         this.project = project;
-    }
-
-    public Integer getBudget() {
-        return budget;
-    }
-
-    public void setBudget(Integer budget) {
-        this.budget = budget;
     }
 
     public Double getPart() {

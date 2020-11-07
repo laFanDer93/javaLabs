@@ -1,20 +1,40 @@
 package lab4;
 
-import java.util.ArrayList;
-
 public class ProjectManager extends Manager implements Heading {
-    public ProjectManager(int id, String name, int workTime, String projectName, int budget, double part, ArrayList<Manager> managerArrayList) {
-        super(id, name, workTime, projectName, budget, part);
-        this.payment = (int)project(budget, part)+payForSubjects(managerArrayList.size());
+
+    private int forOneSubject = 800;
+
+    public ProjectManager(int id,
+                          String name,
+                          int workTime,
+                          ProjectClass project,
+                          double part,
+                          int countOfSubject) {
+        super(id, name, workTime, project, part);
+        this.payment = paymentForProject(project.getBudget(),part)+paymentForSubjects(countOfSubject);
+    }
+
+
+    @Override
+    public int paymentForSubjects(int countOfSubject) {
+        return countOfSubject*forOneSubject;
+    }
+
+    public int getForOneSubject() {
+        return forOneSubject;
+    }
+
+    public void setForOneSubject(int forOneSubject) {
+        this.forOneSubject = forOneSubject;
     }
 
     @Override
-    public double project(int budget, double part) {
-        return super.project(budget, part);
-    }
-
-    @Override
-    public int payForSubjects(int countOfSubject) {
-        return countOfSubject*600;
+    public String toString() {
+        return "ProjectManager{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", workTime=" + workTime +
+                ", payment=" + payment +
+                '}';
     }
 }

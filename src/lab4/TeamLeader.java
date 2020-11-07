@@ -1,22 +1,42 @@
 package lab4;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TeamLeader extends Programmer implements Heading {
-    public TeamLeader(int id, String name, int workTime, int base, String projectName, int budget, double part, List<Programmer> programmers) {
-        super(id, name, workTime, base, projectName, budget, part);
-        this.payment = payForSubjects(programmers.size())+(int)project(budget,part)+payment(workTime,base);
+    private int forOneSubject = 1000;  // +к зарплате за каждого подчиненого
+    private int countOfSubject;
+
+    public int getCountOfSubject() {
+        return countOfSubject;
     }
 
-    @Override
-    public double project(int budget, double part) {
-        return super.project(budget, part);
+    public void setCountOfSubject(int countOfSubject) {
+        this.countOfSubject = countOfSubject;
     }
 
+    public TeamLeader(int id,
+                      String name,
+                      int workTime,
+                      int base,
+                      ProjectClass project,
+                      double part,
+                      int countOfSubject) {
+        super(id, name, workTime, base, project, part);
+        this.payment = payment(workTime, base) + paymentForSubjects(countOfSubject) +
+        paymentForProject(project.getBudget(),part);
+    }
+
+
+
     @Override
-    public int payment(int workTime, int base) {
-        return super.payment(workTime, base);
+    public int paymentForSubjects(int countOfSubject) {
+        return forOneSubject*countOfSubject;
+    }
+
+    public int getForOneSubject() {
+        return forOneSubject;
+    }
+
+    public void setForOneSubject(int forOneSubject) {
+        this.forOneSubject = forOneSubject;
     }
 
     @Override
@@ -27,10 +47,5 @@ public class TeamLeader extends Programmer implements Heading {
                 ", workTime=" + workTime +
                 ", payment=" + payment +
                 '}';
-    }
-
-    @Override
-    public int payForSubjects(int countOfSubject) {
-        return countOfSubject*1000;
     }
 }

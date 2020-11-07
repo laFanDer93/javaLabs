@@ -1,14 +1,23 @@
 package lab4;
 
 public abstract class Personal extends Employee implements WorkTime {
-
-    public Personal(int id, String name, int workTime,int base ) {
+    private int base;
+    public Personal(int id, String name, int workTime, int base) {
         super(id, name, workTime);
-        payment=payment(workTime,base);
+        this.base = base;
+        this.payment = payment(workTime, base);
+    }
+
+    public int getBase() {
+        return base;
+    }
+
+    public void setBase(int base) {
+        this.base = base;
     }
 
     @Override
     public int payment(int workTime, int base) {
-        return workTime*base;
+        return workTime * base;
     }
 }
